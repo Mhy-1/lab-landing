@@ -11,10 +11,12 @@
       "tech": ["React", "Vite", "Framer Motion", "i18n"],
       "status": "ready",
       "category": "showcase",
+      "categoryLabel": "Showcase",
+      "categoryLabelAr": "عرض",
       "demoUrl": "https://rameem.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/rameem",
       "featured": true,
-      "size": "large"
+      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&h=360&fit=crop"
     },
     {
       "id": "flowforge",
@@ -27,10 +29,12 @@
       "tech": ["Next.js", "React Flow", "TypeScript"],
       "status": "ready",
       "category": "tools",
+      "categoryLabel": "Tools",
+      "categoryLabelAr": "أدوات",
       "demoUrl": "https://flowforge.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/flowforge-demo",
       "featured": true,
-      "size": "large"
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=360&fit=crop"
     },
     {
       "id": "ems",
@@ -43,10 +47,12 @@
       "tech": ["Next.js", "Prisma", "PostgreSQL"],
       "status": "ready",
       "category": "enterprise",
+      "categoryLabel": "Enterprise",
+      "categoryLabelAr": "مؤسسي",
       "demoUrl": "https://ems.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/EMS-demo",
       "featured": true,
-      "size": "large"
+      "image": "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=640&h=360&fit=crop"
     },
     {
       "id": "linkedin-generator",
@@ -59,10 +65,12 @@
       "tech": ["React", "Express", "Gemini AI"],
       "status": "ready",
       "category": "ai",
+      "categoryLabel": "AI",
+      "categoryLabelAr": "ذكاء اصطناعي",
       "demoUrl": "https://linkedin.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/Linkedin_Post_Generate",
       "featured": false,
-      "size": "normal"
+      "image": "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=640&h=360&fit=crop"
     },
     {
       "id": "resume-ai",
@@ -75,10 +83,12 @@
       "tech": ["React", "Next.js", "Genkit"],
       "status": "ready",
       "category": "ai",
+      "categoryLabel": "AI",
+      "categoryLabelAr": "ذكاء اصطناعي",
       "demoUrl": "https://resume.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/resume-ai",
       "featured": false,
-      "size": "normal"
+      "image": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=640&h=360&fit=crop"
     },
     {
       "id": "survey-system",
@@ -91,10 +101,12 @@
       "tech": ["React", "TypeScript", "Express"],
       "status": "ready",
       "category": "enterprise",
+      "categoryLabel": "Enterprise",
+      "categoryLabelAr": "مؤسسي",
       "demoUrl": "https://survey.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/AMSteel_Survey",
       "featured": false,
-      "size": "normal"
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=360&fit=crop"
     },
     {
       "id": "e-form",
@@ -107,10 +119,12 @@
       "tech": ["React", "NestJS", "PostgreSQL"],
       "status": "ready",
       "category": "enterprise",
+      "categoryLabel": "Enterprise",
+      "categoryLabelAr": "مؤسسي",
       "demoUrl": "https://eform.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/E_Form",
       "featured": false,
-      "size": "normal"
+      "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=640&h=360&fit=crop"
     },
     {
       "id": "fuel-well",
@@ -123,15 +137,17 @@
       "tech": ["Next.js", "Prisma", "SQLite"],
       "status": "ready",
       "category": "ai",
+      "categoryLabel": "AI",
+      "categoryLabelAr": "ذكاء اصطناعي",
       "demoUrl": "https://fuelwell.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/fuel-well",
       "featured": false,
-      "size": "large"
+      "image": "https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=640&h=360&fit=crop"
     }
   ],
   "meta": {
     "lastUpdated": "2026-01-16",
     "totalProjects": 8,
-    "version": "2.0.0"
+    "version": "2.1.0"
   }
 }

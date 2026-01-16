@@ -192,16 +192,16 @@ function Hero() {
 }
 
 // ============================================
-// PROJECT CARD
+// PROJECT CARD - New Design with Image
 // ============================================
 function ProjectCard({ project, index }) {
   const { t, language } = useApp();
   const Icon = iconMap[project.icon] || Layers;
-  const isLarge = project.size === 'large';
-  const iconColor = projectColors[project.colorClass] || 'var(--accent)';
+  const iconColor = projectColors[project.colorClass] || 'var(--primary)';
 
   const title = language === 'ar' ? project.titleAr : project.title;
   const description = language === 'ar' ? project.descriptionAr : project.description;
+  const categoryLabel = language === 'ar' ? project.categoryLabelAr : project.categoryLabel;
 
   return (
     <motion.article
@@ -209,30 +209,51 @@ function ProjectCard({ project, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      className={`project-card ${isLarge ? 'large' : ''}`}
+      className="project-card"
     >
+      {/* Card Image Section */}
+      <div className="card-image">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={title}
+            loading="lazy"
+          />
+        ) : (
+          <div className="card-image-placeholder">
+            <div className="placeholder-icon" style={{ background: iconColor }}>
+              <Icon />
+            </div>
+          </div>
+        )}
+
+        {/* Category Badge */}
+        <span className="category-badge">{categoryLabel}</span>
+
+        {/* Featured Badge */}
+        {project.featured && (
+          <div className="featured-badge">
+            <Star />
+            {t('projects.featured')}
+          </div>
+        )}
+      </div>
+
+      {/* Card Content Section */}
       <div className="card-content">
         <div className="card-header">
           <div className="card-icon" style={{ background: iconColor }}>
             <Icon />
           </div>
-          {project.featured && (
-            <div className="featured-badge">
-              <Star />
-              {t('projects.featured')}
-            </div>
-          )}
+          <h3 className="card-title">{title}</h3>
         </div>
 
-        <div className="card-body">
-          <h3 className="card-title">{title}</h3>
-          <p className="card-description">{description}</p>
+        <p className="card-description">{description}</p>
 
-          <div className="card-tags">
-            {project.tech.slice(0, 4).map((tech) => (
-              <span key={tech} className="tag">{tech}</span>
-            ))}
-          </div>
+        <div className="card-tags">
+          {project.tech.slice(0, 4).map((tech) => (
+            <span key={tech} className="tag">{tech}</span>
+          ))}
         </div>
 
         <div className="card-actions">
@@ -343,7 +364,7 @@ function Footer() {
             © {year} mdajam.com · {t('footer.rights')}
           </p>
           <p className="footer-text">
-            {t('footer.madeWith')} ❤️ {t('footer.using')} <span>React + Vite</span>
+            {t('footer.madeWith')} <span>React + Vite</span>
           </p>
         </div>
       </div>
