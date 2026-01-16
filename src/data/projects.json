@@ -7,11 +7,14 @@
       "description": "Orthopedic implants showcase with 3D viewers and bilingual support",
       "descriptionAr": "معرض الغرسات الطبية مع عارض ثلاثي الأبعاد ودعم ثنائي اللغة",
       "icon": "Stethoscope",
-      "color": "from-emerald-500 to-teal-600",
+      "colorClass": "project-rameem",
       "tech": ["React", "Vite", "Framer Motion", "i18n"],
       "status": "ready",
+      "category": "showcase",
       "demoUrl": "https://rameem.lab.mdajam.com",
-      "featured": true
+      "githubUrl": "https://github.com/Mhy-1/rameem",
+      "featured": true,
+      "size": "large"
     },
     {
       "id": "flowforge",
@@ -20,50 +23,62 @@
       "description": "Visual workflow automation builder with drag-and-drop interface",
       "descriptionAr": "منشئ سير العمل المرئي مع واجهة السحب والإفلات",
       "icon": "Workflow",
-      "color": "from-violet-500 to-purple-600",
+      "colorClass": "project-flowforge",
       "tech": ["Next.js", "React Flow", "TypeScript"],
       "status": "ready",
+      "category": "tools",
       "demoUrl": "https://flowforge.lab.mdajam.com",
-      "featured": true
+      "githubUrl": "https://github.com/Mhy-1/flowforge-demo",
+      "featured": true,
+      "size": "large"
     },
     {
       "id": "ems",
       "title": "EMS Healthcare",
-      "titleAr": "نظام إدارة الرعاية الصحية",
+      "titleAr": "نظام الرعاية الصحية",
       "description": "Enterprise medical system with patient tracking and risk detection",
       "descriptionAr": "نظام طبي متكامل مع تتبع المرضى وكشف المخاطر",
       "icon": "Building2",
-      "color": "from-blue-500 to-cyan-600",
+      "colorClass": "project-ems",
       "tech": ["Next.js", "Prisma", "PostgreSQL"],
       "status": "ready",
+      "category": "enterprise",
       "demoUrl": "https://ems.lab.mdajam.com",
-      "featured": true
+      "githubUrl": "https://github.com/Mhy-1/EMS-demo",
+      "featured": true,
+      "size": "large"
     },
     {
       "id": "linkedin-generator",
-      "title": "LinkedIn Post Generator",
-      "titleAr": "مولد منشورات لينكدإن",
+      "title": "LinkedIn Generator",
+      "titleAr": "مولد لينكدإن",
       "description": "AI-powered LinkedIn post generator with Gemini integration",
       "descriptionAr": "مولد منشورات لينكدإن بالذكاء الاصطناعي",
       "icon": "Linkedin",
-      "color": "from-sky-500 to-blue-600",
+      "colorClass": "project-linkedin",
       "tech": ["React", "Express", "Gemini AI"],
       "status": "ready",
+      "category": "ai",
       "demoUrl": "https://linkedin.lab.mdajam.com",
-      "featured": false
+      "githubUrl": "https://github.com/Mhy-1/Linkedin_Post_Generate",
+      "featured": false,
+      "size": "normal"
     },
     {
       "id": "resume-ai",
-      "title": "Resume AI Builder",
-      "titleAr": "منشئ السيرة الذاتية بالذكاء الاصطناعي",
+      "title": "Resume AI",
+      "titleAr": "السيرة الذاتية",
       "description": "AI-powered resume builder with Kanban workflow and DOCX export",
       "descriptionAr": "منشئ السيرة الذاتية مع لوحة كانبان وتصدير DOCX",
       "icon": "FileText",
-      "color": "from-orange-500 to-amber-600",
+      "colorClass": "project-resume",
       "tech": ["React", "Next.js", "Genkit"],
       "status": "ready",
+      "category": "ai",
       "demoUrl": "https://resume.lab.mdajam.com",
-      "featured": false
+      "githubUrl": "https://github.com/Mhy-1/resume-ai",
+      "featured": false,
+      "size": "normal"
     },
     {
       "id": "survey-system",
@@ -72,24 +87,30 @@
       "description": "Industrial survey tool with drag-drop builder and analytics",
       "descriptionAr": "أداة استبيان صناعية مع منشئ السحب والإفلات والتحليلات",
       "icon": "BarChart3",
-      "color": "from-rose-500 to-pink-600",
+      "colorClass": "project-survey",
       "tech": ["React", "TypeScript", "Express"],
       "status": "ready",
+      "category": "enterprise",
       "demoUrl": "https://survey.lab.mdajam.com",
-      "featured": false
+      "githubUrl": "https://github.com/Mhy-1/AMSteel_Survey",
+      "featured": false,
+      "size": "normal"
     },
     {
       "id": "e-form",
       "title": "E-Form Builder",
-      "titleAr": "منشئ النماذج الإلكترونية",
+      "titleAr": "منشئ النماذج",
       "description": "Dynamic form builder with validation and PDF generation",
       "descriptionAr": "منشئ النماذج الديناميكية مع التحقق وتوليد PDF",
       "icon": "FileCode",
-      "color": "from-indigo-500 to-violet-600",
+      "colorClass": "project-eform",
       "tech": ["React", "NestJS", "PostgreSQL"],
       "status": "ready",
+      "category": "enterprise",
       "demoUrl": "https://eform.lab.mdajam.com",
-      "featured": false
+      "githubUrl": "https://github.com/Mhy-1/E_Form",
+      "featured": false,
+      "size": "normal"
     },
     {
       "id": "fuel-well",
@@ -98,16 +119,19 @@
       "description": "Product catalog with AI nutrition extraction and OCR",
       "descriptionAr": "كتالوج المنتجات مع استخراج التغذية بالذكاء الاصطناعي",
       "icon": "Fuel",
-      "color": "from-lime-500 to-green-600",
+      "colorClass": "project-fuelwell",
       "tech": ["Next.js", "Prisma", "SQLite"],
       "status": "ready",
+      "category": "ai",
       "demoUrl": "https://fuelwell.lab.mdajam.com",
-      "featured": false
+      "githubUrl": "https://github.com/Mhy-1/fuel-well",
+      "featured": false,
+      "size": "large"
     }
   ],
   "meta": {
     "lastUpdated": "2026-01-16",
     "totalProjects": 8,
-    "version": "1.0.0"
+    "version": "2.0.0"
   }
 }

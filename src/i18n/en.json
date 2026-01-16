@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "lang": "en",
+    "dir": "ltr"
+  },
+  "nav": {
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Technical Projects Showcase",
+    "title": "Project",
+    "titleAccent": "Lab",
+    "subtitle": "A collection of diverse technical projects, from hospital management systems to AI-powered tools",
+    "cta": "Explore Projects",
+    "stats": {
+      "projects": "Projects",
+      "ready": "Ready",
+      "technologies": "Technologies"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "viewProject": "View Project",
+    "viewCode": "Code",
+    "featured": "Featured",
+    "status": {
+      "ready": "Ready",
+      "inProgress": "In Progress",
+      "planned": "Planned"
+    },
+    "filter": {
+      "all": "All",
+      "ai": "AI",
+      "enterprise": "Enterprise",
+      "tools": "Tools"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "madeWith": "Made with",
+    "using": "using"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "accessibility": {
+    "toggleTheme": "Toggle theme",
+    "toggleLanguage": "Toggle language",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  }
+}

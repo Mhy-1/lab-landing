@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "lang": "ar",
+    "dir": "rtl"
+  },
+  "nav": {
+    "projects": "المشاريع",
+    "about": "عني",
+    "contact": "تواصل"
+  },
+  "hero": {
+    "badge": "معرض المشاريع التقنية",
+    "title": "مختبر",
+    "titleAccent": "المشاريع",
+    "subtitle": "مجموعة من المشاريع التقنية المتنوعة، من أنظمة إدارة المستشفيات إلى أدوات الذكاء الاصطناعي",
+    "cta": "استكشف المشاريع",
+    "stats": {
+      "projects": "مشاريع",
+      "ready": "جاهزة",
+      "technologies": "تقنية"
+    }
+  },
+  "projects": {
+    "title": "المشاريع",
+    "viewProject": "عرض المشروع",
+    "viewCode": "الكود",
+    "featured": "مميز",
+    "status": {
+      "ready": "جاهز",
+      "inProgress": "قيد التطوير",
+      "planned": "مخطط"
+    },
+    "filter": {
+      "all": "الكل",
+      "ai": "ذكاء اصطناعي",
+      "enterprise": "مؤسسي",
+      "tools": "أدوات"
+    }
+  },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة",
+    "madeWith": "صُنع بـ",
+    "using": "باستخدام"
+  },
+  "theme": {
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام"
+  },
+  "accessibility": {
+    "toggleTheme": "تبديل السمة",
+    "toggleLanguage": "تبديل اللغة",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة"
+  }
+}

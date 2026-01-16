@@ -1,8 +1,12 @@
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useMemo } from 'react';
 import {
+  Sun,
+  Moon,
+  Globe,
   ExternalLink,
   Github,
+  ArrowUpRight,
   Sparkles,
   Workflow,
   FileText,
@@ -13,392 +17,436 @@ import {
   Fuel,
   Stethoscope,
   Star,
-  Filter,
-  Grid3X3,
-  LayoutList,
-  Search,
-  ArrowUpRight,
-  Code2,
-  Zap
+  ChevronDown,
+  Zap,
+  Briefcase,
+  Wrench,
+  Layers
 } from 'lucide-react';
+import { AppProvider, useApp } from './context/AppContext';
+import { cn } from './lib/utils';
 import projectsData from './data/projects.json';
 
-// Icon mapping from string to component
+// Icon mapping
 const iconMap = {
-  Stethoscope,
-  Workflow,
-  Building2,
-  Linkedin,
-  FileText,
-  BarChart3,
-  FileCode,
-  Fuel,
+  Stethoscope, Workflow, Building2, Linkedin,
+  FileText, BarChart3, FileCode, Fuel
 };
 
-const statusConfig = {
-  ready: { color: 'bg-emerald-500', label: 'جاهز', labelEn: 'Ready' },
-  'in-progress': { color: 'bg-amber-500', label: 'قيد التطوير', labelEn: 'In Progress' },
-  planned: { color: 'bg-slate-500', label: 'مخطط', labelEn: 'Planned' },
+const categoryIcons = {
+  all: Layers,
+  ai: Zap,
+  enterprise: Briefcase,
+  tools: Wrench,
+  showcase: Star
 };
 
-const categories = [
-  { id: 'all', label: 'الكل', icon: Grid3X3 },
-  { id: 'ai', label: 'ذكاء اصطناعي', icon: Zap },
-  { id: 'enterprise', label: 'أنظمة مؤسسية', icon: Building2 },
-  { id: 'tools', label: 'أدوات', icon: Code2 },
-];
+// ============================================
+// HEADER COMPONENT
+// ============================================
+function Header() {
+  const { theme, toggleTheme, language, toggleLanguage, t, isRTL } = useApp();
+  const [scrolled, setScrolled] = useState(false);
 
-function Particles() {
-  const particles = useMemo(() =>
-    [...Array(30)].map((_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 10}s`,
-      duration: `${15 + Math.random() * 15}s`,
-      size: Math.random() > 0.5 ? 4 : 2,
-    })), []
-  );
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="particles">
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className="particle"
-          style={{
-            left: p.left,
-            animationDelay: p.delay,
-            animationDuration: p.duration,
-            width: p.size,
-            height: p.size,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-function ProjectCard({ project, index, viewMode }) {
-  const Icon = iconMap[project.icon] || Code2;
-  const status = statusConfig[project.status];
-
-  if (viewMode === 'list') {
-    return (
-      <motion.div
-        layout
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 20 }}
-        transition={{ delay: index * 0.05 }}
-        className="glass rounded-xl p-4 flex items-center gap-4 card-hover group"
-      >
-        <div className={`bg-gradient-to-br ${project.color} p-3 rounded-xl shrink-0`}>
-          <Icon className="w-6 h-6 text-white" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-lg font-bold text-white truncate">{project.titleAr}</h3>
-            {project.featured && <Star className="w-4 h-4 text-amber-400 fill-amber-400 shrink-0" />}
-          </div>
-          <p className="text-sm text-gray-400 truncate">{project.descriptionAr}</p>
-        </div>
-        <div className="flex items-center gap-3 shrink-0">
-          <span className={`${status.color} px-2 py-0.5 rounded-full text-xs text-white`}>
-            {status.label}
-          </span>
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center gap-1 px-4 py-2 rounded-lg bg-gradient-to-r ${project.color} text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity`}
-          >
-            عرض
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
-        </div>
-      </motion.div>
-    );
-  }
-
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -30, scale: 0.95 }}
-      transition={{ delay: index * 0.08, duration: 0.4 }}
-      className="card-hover group"
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className={cn(
+        'fixed top-0 inset-x-0 z-50 transition-all duration-300',
+        scrolled ? 'py-3' : 'py-5'
+      )}
     >
-      <div className="glass rounded-2xl overflow-hidden h-full flex flex-col relative">
-        {/* Featured badge */}
-        {project.featured && (
-          <div className="absolute top-4 left-4 z-10 flex items-center gap-1 bg-amber-500/90 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-full">
-            <Star className="w-3 h-3 fill-white" />
-            مميز
-          </div>
-        )}
-
-        {/* Header with gradient */}
-        <div className={`bg-gradient-to-br ${project.color} p-6 relative overflow-hidden`}>
-          <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl" />
-          <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-xl" />
-
-          {/* Animated glow on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-          <div className="relative flex items-center justify-between">
-            <motion.div
-              className="bg-white/20 backdrop-blur-sm rounded-xl p-3"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              <Icon className="w-8 h-8 text-white" />
-            </motion.div>
-            <div className={`${status.color} px-3 py-1 rounded-full text-xs font-medium text-white shadow-lg`}>
-              {status.label}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <nav
+          className={cn(
+            'flex items-center justify-between px-4 sm:px-6 py-3 rounded-2xl transition-all duration-300',
+            scrolled ? 'glass shadow-lg' : 'bg-transparent'
+          )}
+        >
+          {/* Logo */}
+          <a href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+              <span className="text-white font-bold text-sm">L</span>
             </div>
-          </div>
-        </div>
+            <span className="font-bold text-lg text-primary hidden sm:block">
+              Lab<span className="text-accent">.</span>
+            </span>
+          </a>
 
-        {/* Content */}
-        <div className="p-6 flex-1 flex flex-col">
-          <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">
-            {project.titleAr}
-          </h3>
-          <p className="text-sm text-gray-500 mb-3 font-medium">{project.title}</p>
-          <p className="text-gray-400 text-sm mb-4 flex-1 leading-relaxed">{project.descriptionAr}</p>
-
-          {/* Tech stack */}
-          <div className="flex flex-wrap gap-2 mb-5">
-            {project.tech.map((tech) => (
-              <span
-                key={tech}
-                className="px-2.5 py-1 text-xs bg-white/5 border border-white/10 rounded-lg text-gray-400 hover:bg-white/10 hover:text-white transition-colors cursor-default"
-              >
-                {tech}
+          {/* Controls */}
+          <div className="flex items-center gap-2">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className="btn-ghost px-3 py-2 rounded-xl flex items-center gap-2"
+              aria-label={t('accessibility.toggleLanguage')}
+            >
+              <Globe className="w-4 h-4" />
+              <span className="text-sm font-medium">
+                {language === 'ar' ? 'EN' : 'عربي'}
               </span>
-            ))}
-          </div>
+            </button>
 
-          {/* Actions */}
-          <motion.a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r ${project.color} text-white font-medium text-sm shadow-lg transition-all`}
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <ExternalLink className="w-4 h-4" />
-            عرض المشروع
-            <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </motion.a>
-        </div>
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="btn-ghost p-2.5 rounded-xl"
+              aria-label={t('accessibility.toggleTheme')}
+            >
+              <motion.div
+                initial={false}
+                animate={{ rotate: theme === 'dark' ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-5 h-5" />
+                ) : (
+                  <Moon className="w-5 h-5" />
+                )}
+              </motion.div>
+            </button>
+
+            {/* GitHub */}
+            <a
+              href="https://github.com/Mhy-1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost p-2.5 rounded-xl hidden sm:flex"
+              aria-label="GitHub"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </div>
+        </nav>
       </div>
-    </motion.div>
+    </motion.header>
   );
 }
 
-function App() {
-  const [viewMode, setViewMode] = useState('grid');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
-
-  const projects = projectsData.projects.map(p => ({
-    ...p,
-    icon: p.icon,
-  }));
-
-  const filteredProjects = useMemo(() => {
-    return projects.filter(project => {
-      const matchesSearch = searchQuery === '' ||
-        project.titleAr.includes(searchQuery) ||
-        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        project.descriptionAr.includes(searchQuery);
-
-      const matchesCategory = activeCategory === 'all' ||
-        (activeCategory === 'ai' && project.tech.some(t => t.toLowerCase().includes('ai') || t.toLowerCase().includes('genkit'))) ||
-        (activeCategory === 'enterprise' && ['ems', 'e-form', 'survey-system'].includes(project.id)) ||
-        (activeCategory === 'tools' && ['flowforge', 'resume-ai', 'linkedin-generator'].includes(project.id));
-
-      return matchesSearch && matchesCategory;
-    });
-  }, [projects, searchQuery, activeCategory]);
-
-  const readyCount = projects.filter(p => p.status === 'ready').length;
+// ============================================
+// HERO SECTION
+// ============================================
+function Hero() {
+  const { t, language } = useApp();
+  const projectCount = projectsData.projects.length;
+  const techCount = [...new Set(projectsData.projects.flatMap(p => p.tech))].length;
 
   return (
-    <div className="min-h-screen relative">
-      <Particles />
+    <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 -start-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -end-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+      </div>
 
-      {/* Hero Section */}
-      <header className="relative z-10 pt-16 pb-12 px-6">
-        <div className="max-w-6xl mx-auto text-center">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="text-center max-w-3xl mx-auto">
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 mb-6"
+            transition={{ duration: 0.5 }}
           >
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-sm text-gray-300">معرض المشاريع التقنية</span>
+            <span className="badge">
+              <Sparkles className="w-3.5 h-3.5" />
+              {t('hero.badge')}
+            </span>
           </motion.div>
 
+          {/* Title */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-5xl md:text-7xl font-extrabold mb-4"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-display mt-6 mb-6"
           >
-            <span className="gradient-text">Lab</span>
-            <span className="text-white">.mdajam</span>
-            <span className="text-purple-400">.com</span>
+            {language === 'ar' ? (
+              <>
+                <span className="text-primary">{t('hero.title')}</span>{' '}
+                <span className="gradient-text">{t('hero.titleAccent')}</span>
+              </>
+            ) : (
+              <>
+                <span className="gradient-text">{t('hero.titleAccent')}</span>{' '}
+                <span className="text-primary">{t('hero.title')}</span>
+              </>
+            )}
           </motion.h1>
 
+          {/* Subtitle */}
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-lg text-gray-400 max-w-2xl mx-auto mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-body text-secondary max-w-xl mx-auto mb-10"
           >
-            مجموعة من المشاريع التقنية المتنوعة - من أنظمة إدارة المستشفيات إلى أدوات الذكاء الاصطناعي
+            {t('hero.subtitle')}
           </motion.p>
 
+          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-4 mb-8"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex items-center justify-center gap-8 sm:gap-12"
           >
-            <div className="glass rounded-xl px-5 py-2.5 flex items-center gap-3">
-              <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-white font-medium text-sm">{readyCount} مشاريع جاهزة</span>
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-bold text-primary">{projectCount}</div>
+              <div className="text-micro text-muted uppercase tracking-wider mt-1">
+                {t('hero.stats.projects')}
+              </div>
             </div>
-            <a
-              href="https://github.com/msharydajam"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="glass rounded-xl px-5 py-2.5 flex items-center gap-2 hover:bg-white/10 transition-colors"
+            <div className="w-px h-12 bg-border-subtle" />
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-bold text-accent">{projectCount}</div>
+              <div className="text-micro text-muted uppercase tracking-wider mt-1">
+                {t('hero.stats.ready')}
+              </div>
+            </div>
+            <div className="w-px h-12 bg-border-subtle" />
+            <div className="text-center">
+              <div className="text-3xl sm:text-4xl font-bold text-primary">{techCount}+</div>
+              <div className="text-micro text-muted uppercase tracking-wider mt-1">
+                {t('hero.stats.technologies')}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-16 flex justify-center"
+          >
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="text-subtle"
             >
-              <Github className="w-4 h-4 text-gray-400" />
-              <span className="text-gray-300 text-sm">GitHub</span>
-            </a>
+              <ChevronDown className="w-6 h-6" />
+            </motion.div>
           </motion.div>
         </div>
-      </header>
-
-      {/* Filters & Search */}
-      <section className="relative z-10 px-6 mb-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="glass rounded-2xl p-4 flex flex-col md:flex-row items-center gap-4">
-            {/* Search */}
-            <div className="relative flex-1 w-full md:w-auto">
-              <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-              <input
-                type="text"
-                placeholder="ابحث عن مشروع..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl py-2.5 pr-10 pl-4 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-500/50 transition-colors"
-              />
-            </div>
-
-            {/* Categories */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
-              {categories.map((cat) => {
-                const CatIcon = cat.icon;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
-                      activeCategory === cat.id
-                        ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                        : 'bg-white/5 text-gray-400 border border-transparent hover:bg-white/10'
-                    }`}
-                  >
-                    <CatIcon className="w-4 h-4" />
-                    {cat.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* View toggle */}
-            <div className="flex items-center gap-1 bg-white/5 rounded-lg p-1">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-md transition-colors ${
-                  viewMode === 'grid' ? 'bg-purple-500/20 text-purple-300' : 'text-gray-500 hover:text-gray-300'
-                }`}
-              >
-                <Grid3X3 className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`p-2 rounded-md transition-colors ${
-                  viewMode === 'list' ? 'bg-purple-500/20 text-purple-300' : 'text-gray-500 hover:text-gray-300'
-                }`}
-              >
-                <LayoutList className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Grid */}
-      <main className="relative z-10 px-6 pb-20">
-        <div className="max-w-6xl mx-auto">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.length > 0 ? (
-              <motion.div
-                layout
-                className={viewMode === 'grid'
-                  ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                  : "flex flex-col gap-3"
-                }
-              >
-                {filteredProjects.map((project, index) => (
-                  <ProjectCard key={project.id} project={project} index={index} viewMode={viewMode} />
-                ))}
-              </motion.div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-center py-20"
-              >
-                <Filter className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-500">لا توجد مشاريع تطابق البحث</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-white/5 py-8 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">
-            © 2026 mdajam.com - جميع الحقوق محفوظة
-          </p>
-          <div className="flex items-center gap-2 text-sm">
-            <span className="text-gray-500">صنع بـ</span>
-            <span className="text-red-500">❤️</span>
-            <span className="text-gray-500">باستخدام</span>
-            <span className="text-purple-400 font-medium">React + Vite + Tailwind</span>
-          </div>
-        </div>
-      </footer>
-
-      {/* Version Badge */}
-      <div className="fixed bottom-4 left-4 z-50 glass rounded-full px-3 py-1.5 flex items-center gap-2 text-xs">
-        <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-        <span className="text-gray-400">v{projectsData.meta.version}</span>
       </div>
+    </section>
+  );
+}
+
+// ============================================
+// PROJECT CARD
+// ============================================
+function ProjectCard({ project, index }) {
+  const { t, language } = useApp();
+  const Icon = iconMap[project.icon] || Layers;
+  const isLarge = project.size === 'large';
+
+  const title = language === 'ar' ? project.titleAr : project.title;
+  const description = language === 'ar' ? project.descriptionAr : project.description;
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
+      className={cn('group', isLarge && 'bento-large')}
+    >
+      <div className={cn('card h-full', project.colorClass)}>
+        <div className="p-6 sm:p-8 h-full flex flex-col">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-6">
+            <div
+              className="w-12 h-12 rounded-xl project-accent flex items-center justify-center"
+              style={{ backgroundColor: `rgb(var(--project-color))` }}
+            >
+              <Icon className="w-6 h-6 text-white" />
+            </div>
+
+            <div className="flex items-center gap-2">
+              {project.featured && (
+                <span className="badge text-xs">
+                  <Star className="w-3 h-3" />
+                  {t('projects.featured')}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className="flex-1">
+            <h3 className="text-title text-primary mb-2 group-hover:text-accent transition-colors">
+              {title}
+            </h3>
+            <p className="text-caption text-muted mb-4 line-clamp-2">
+              {description}
+            </p>
+
+            {/* Tech tags */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.tech.slice(0, 4).map((tech) => (
+                <span key={tech} className="tag">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex items-center gap-3 pt-4 border-t border-subtle">
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary flex-1"
+            >
+              {t('projects.viewProject')}
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary px-3"
+                aria-label={t('projects.viewCode')}
+              >
+                <Github className="w-4 h-4" />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+// ============================================
+// PROJECTS SECTION
+// ============================================
+function Projects() {
+  const { t } = useApp();
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const filters = [
+    { id: 'all', label: t('projects.filter.all') },
+    { id: 'ai', label: t('projects.filter.ai') },
+    { id: 'enterprise', label: t('projects.filter.enterprise') },
+    { id: 'tools', label: t('projects.filter.tools') },
+  ];
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'all') return projectsData.projects;
+    return projectsData.projects.filter(p => p.category === activeFilter);
+  }, [activeFilter]);
+
+  return (
+    <section id="projects" className="py-16 sm:py-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Section header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-headline text-primary"
+          >
+            {t('projects.title')}
+          </motion.h2>
+
+          {/* Filters */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-2"
+          >
+            {filters.map((filter) => {
+              const FilterIcon = categoryIcons[filter.id] || Layers;
+              return (
+                <button
+                  key={filter.id}
+                  onClick={() => setActiveFilter(filter.id)}
+                  className={cn(
+                    'flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all',
+                    activeFilter === filter.id
+                      ? 'bg-accent text-white'
+                      : 'bg-surface text-secondary hover:text-primary border border-subtle'
+                  )}
+                >
+                  <FilterIcon className="w-4 h-4" />
+                  {filter.label}
+                </button>
+              );
+            })}
+          </motion.div>
+        </div>
+
+        {/* Projects Grid */}
+        <AnimatePresence mode="popLayout">
+          <motion.div layout className="bento-grid">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
+// ============================================
+// FOOTER
+// ============================================
+function Footer() {
+  const { t } = useApp();
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="py-8 border-t border-subtle">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-caption text-muted">
+            © {year} mdajam.com · {t('footer.rights')}
+          </p>
+          <p className="text-caption text-muted flex items-center gap-2">
+            {t('footer.madeWith')} <span className="text-red-500">❤️</span> {t('footer.using')}{' '}
+            <span className="text-accent font-medium">React + Vite</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ============================================
+// MAIN APP
+// ============================================
+function AppContent() {
+  return (
+    <div className="min-h-screen bg-base relative noise">
+      <Header />
+      <main>
+        <Hero />
+        <Projects />
+      </main>
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AppProvider>
+      <AppContent />
+    </AppProvider>
+  );
+}
