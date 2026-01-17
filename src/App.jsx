@@ -221,8 +221,8 @@ function GitHubBadge({ isPublic, githubUrl, t }) {
         rel="noopener noreferrer"
         className="github-badge github-badge-public"
       >
-        <Github size={16} />
-        <span>Public</span>
+        <Github size={14} />
+        <span>{t('projects.public')}</span>
         <ExternalLink size={12} />
       </a>
     );
@@ -231,7 +231,7 @@ function GitHubBadge({ isPublic, githubUrl, t }) {
   return (
     <div className="github-badge github-badge-private">
       <Lock size={14} />
-      <span>Private</span>
+      <span>{t('projects.private')}</span>
     </div>
   );
 }

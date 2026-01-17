@@ -29,6 +29,8 @@
     "viewCode": "الكود",
     "featured": "مميز",
     "noResults": "لم يتم العثور على مشاريع مطابقة للبحث",
+    "public": "عام",
+    "private": "خاص",
     "status": {
       "ready": "جاهز",
       "inProgress": "قيد التطوير",

@@ -29,6 +29,8 @@
     "viewCode": "Code",
     "featured": "Featured",
     "noResults": "No projects found matching your search",
+    "public": "Public",
+    "private": "Private",
     "status": {
       "ready": "Ready",
       "inProgress": "In Progress",

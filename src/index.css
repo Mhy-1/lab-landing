@@ -438,6 +438,16 @@ img {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: inline-block;
+}
+
+/* Arabic: Use solid color instead of gradient to preserve letter dots */
+[dir="rtl"] .hero-title-accent {
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: var(--primary);
+  background-clip: unset;
+  color: var(--primary);
 }
 
 .hero-subtitle {
@@ -1065,7 +1075,8 @@ img {
 .github-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 6px;
   padding: 4px 10px;
   border-radius: var(--radius-sm);
   font-size: 11px;
@@ -1085,14 +1096,14 @@ img {
 }
 
 .github-badge-private {
-  background: #94a3b8;
+  background: #ef4444;
   color: white;
-  border: 1px solid #94a3b8;
+  border: 1px solid #ef4444;
 }
 
 .github-badge-private:hover {
-  background: #64748b;
-  border-color: #64748b;
+  background: #dc2626;
+  border-color: #dc2626;
 }
 
 .card-description {
@@ -1520,6 +1531,11 @@ img {
 
 [dir="rtl"] .github-badge {
   direction: rtl;
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .github-badge svg {
+  order: 1;
 }
 
 [dir="rtl"] .tech-badge {
