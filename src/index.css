@@ -1531,11 +1531,6 @@ img {
 
 [dir="rtl"] .github-badge {
   direction: rtl;
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .github-badge svg {
-  order: 1;
 }
 
 [dir="rtl"] .tech-badge {
