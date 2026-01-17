@@ -4,8 +4,8 @@
       "id": "rameem",
       "title": "Rameem Medical",
       "titleAr": "رميم للأجهزة الطبية",
-      "description": "Orthopedic implants showcase with 3D viewers and bilingual support",
-      "descriptionAr": "معرض الغرسات الطبية مع عارض ثلاثي الأبعاد ودعم ثنائي اللغة",
+      "description": "Medical devices showcase website with product catalog and bilingual support",
+      "descriptionAr": "موقع عرض الأجهزة الطبية مع كتالوج المنتجات ودعم ثنائي اللغة",
       "icon": "Stethoscope",
       "colorClass": "project-rameem",
       "tech": ["React", "Vite", "Framer Motion", "i18n"],
@@ -23,18 +23,15 @@
       "demoUrl": "https://rameem.lab.mdajam.com",
       "githubUrl": null,
       "featured": true,
-      "images": [
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=450&fit=crop",
-        "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=450&fit=crop"
-      ],
+      "images": ["/screenshots/rameem.png"],
       "year": 2025
     },
     {
       "id": "sparkles-laundry",
       "title": "Sparkles Laundry",
       "titleAr": "سباركلز للغسيل",
-      "description": "Modern laundry service website with booking system and service showcase",
-      "descriptionAr": "موقع خدمات غسيل عصري مع نظام حجز وعرض الخدمات",
+      "description": "Modern laundry service landing page with service packages and contact form",
+      "descriptionAr": "صفحة هبوط لخدمات الغسيل مع باقات الخدمات ونموذج التواصل",
       "icon": "Sparkles",
       "colorClass": "project-sparkles",
       "tech": ["React", "Vite", "TailwindCSS"],
@@ -52,9 +49,7 @@
       "demoUrl": "https://sparkles.lab.mdajam.com",
       "githubUrl": null,
       "featured": true,
-      "images": [
-        "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=800&h=450&fit=crop"
-      ],
+      "images": ["/screenshots/sparkles.png"],
       "year": 2025
     },
     {
@@ -66,7 +61,7 @@
       "icon": "Fuel",
       "colorClass": "project-fuelwell",
       "tech": ["Next.js", "Prisma", "SQLite", "AI/OCR"],
-      "status": "ready",
+      "status": "maintenance",
       "category": "ai",
       "categoryLabel": "AI",
       "categoryLabelAr": "ذكاء اصطناعي",
@@ -79,18 +74,16 @@
       "isPublic": true,
       "demoUrl": "https://fuelwell.lab.mdajam.com",
       "githubUrl": "https://github.com/Mhy-1/fuel-well",
-      "featured": true,
-      "images": [
-        "https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=800&h=450&fit=crop"
-      ],
+      "featured": false,
+      "images": ["/screenshots/fuelwell.png"],
       "year": 2024
     },
     {
       "id": "ems",
       "title": "EMS Healthcare",
       "titleAr": "نظام الرعاية الصحية",
-      "description": "Enterprise medical system with patient tracking and risk detection",
-      "descriptionAr": "نظام طبي متكامل مع تتبع المرضى وكشف المخاطر",
+      "description": "Healthcare management system with patient tracking and appointment scheduling",
+      "descriptionAr": "نظام إدارة الرعاية الصحية مع تتبع المرضى وجدولة المواعيد",
       "icon": "Building2",
       "colorClass": "project-ems",
       "tech": ["Next.js", "Prisma", "PostgreSQL"],
@@ -108,9 +101,7 @@
       "demoUrl": "https://ems.lab.mdajam.com",
       "githubUrl": null,
       "featured": true,
-      "images": [
-        "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=450&fit=crop"
-      ],
+      "images": ["/screenshots/ems.png"],
       "year": 2025
     },
     {
@@ -136,17 +127,15 @@
       "demoUrl": "https://flowforge.lab.mdajam.com",
       "githubUrl": null,
       "featured": false,
-      "images": [
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop"
-      ],
+      "images": ["/screenshots/flowforge.png"],
       "year": 2025
     },
     {
       "id": "linkedin-generator",
-      "title": "LinkedIn Generator",
-      "titleAr": "مولد لينكدإن",
-      "description": "AI-powered LinkedIn post generator with Gemini integration",
-      "descriptionAr": "مولد منشورات لينكدإن بالذكاء الاصطناعي",
+      "title": "LinkedIn Post Generator",
+      "titleAr": "مولد منشورات لينكدإن",
+      "description": "AI-powered LinkedIn post generator with tone customization and hashtag suggestions",
+      "descriptionAr": "مولد منشورات لينكدإن بالذكاء الاصطناعي مع تخصيص الأسلوب واقتراح الهاشتاقات",
       "icon": "Linkedin",
       "colorClass": "project-linkedin",
       "tech": ["React", "Express", "Gemini AI"],
@@ -164,17 +153,15 @@
       "demoUrl": "https://linkedin.lab.mdajam.com",
       "githubUrl": null,
       "featured": false,
-      "images": [
-        "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=800&h=450&fit=crop"
-      ],
+      "images": ["/screenshots/linkedin.png"],
       "year": 2024
     },
     {
       "id": "resume-ai",
       "title": "Resume AI",
-      "titleAr": "السيرة الذاتية",
-      "description": "AI-powered resume builder with Kanban workflow and DOCX export",
-      "descriptionAr": "منشئ السيرة الذاتية مع لوحة كانبان وتصدير DOCX",
+      "titleAr": "السيرة الذاتية الذكية",
+      "description": "AI-powered resume builder with Kanban workflow and multiple export formats",
+      "descriptionAr": "منشئ السيرة الذاتية بالذكاء الاصطناعي مع لوحة كانبان وتصدير متعدد",
       "icon": "FileText",
       "colorClass": "project-resume",
       "tech": ["React", "Next.js", "Genkit"],
@@ -192,17 +179,15 @@
       "demoUrl": "https://resume.lab.mdajam.com",
       "githubUrl": null,
       "featured": false,
-      "images": [
-        "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=450&fit=crop"
-      ],
+      "images": ["/screenshots/resume.png"],
       "year": 2025
     },
     {
       "id": "survey-system",
       "title": "Survey System",
       "titleAr": "نظام الاستبيانات",
-      "description": "Industrial survey tool with drag-drop builder and analytics",
-      "descriptionAr": "أداة استبيان صناعية مع منشئ السحب والإفلات والتحليلات",
+      "description": "Survey builder with drag-drop question creation and real-time analytics",
+      "descriptionAr": "منشئ الاستبيانات مع سحب وإفلات الأسئلة وتحليلات فورية",
       "icon": "BarChart3",
       "colorClass": "project-survey",
       "tech": ["React", "TypeScript", "Express"],
@@ -220,17 +205,15 @@
       "demoUrl": "https://survey.lab.mdajam.com",
       "githubUrl": null,
       "featured": false,
-      "images": [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop"
-      ],
+      "images": ["/screenshots/survey.png"],
       "year": 2024
     },
     {
       "id": "e-form",
       "title": "E-Form Builder",
-      "titleAr": "منشئ النماذج",
-      "description": "Dynamic form builder with validation and PDF generation",
-      "descriptionAr": "منشئ النماذج الديناميكية مع التحقق وتوليد PDF",
+      "titleAr": "منشئ النماذج الإلكترونية",
+      "description": "Dynamic form builder with field validation and PDF export",
+      "descriptionAr": "منشئ النماذج الديناميكية مع التحقق من الحقول وتصدير PDF",
       "icon": "FileCode",
       "colorClass": "project-eform",
       "tech": ["React", "NestJS", "PostgreSQL"],
@@ -248,15 +231,65 @@
       "demoUrl": "https://eform.lab.mdajam.com",
       "githubUrl": null,
       "featured": false,
-      "images": [
-        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=450&fit=crop"
-      ],
+      "images": ["/screenshots/eform.png"],
       "year": 2024
+    },
+    {
+      "id": "mish-panel",
+      "title": "Mish Panel",
+      "titleAr": "ميش بنل",
+      "description": "Admin dashboard with user management, analytics, and customizable widgets",
+      "descriptionAr": "لوحة تحكم إدارية مع إدارة المستخدمين والتحليلات وأدوات قابلة للتخصيص",
+      "icon": "LayoutDashboard",
+      "colorClass": "project-panel",
+      "tech": ["React", "TypeScript", "TailwindCSS"],
+      "status": "ready",
+      "category": "tools",
+      "categoryLabel": "Tools",
+      "categoryLabelAr": "أدوات",
+      "type": "personal",
+      "typeLabel": "Personal Project",
+      "typeLabelAr": "مشروع شخصي",
+      "viewType": "demo",
+      "viewLabel": "See Demo",
+      "viewLabelAr": "عرض الديمو",
+      "isPublic": false,
+      "demoUrl": "https://panel.lab.mdajam.com",
+      "githubUrl": null,
+      "featured": true,
+      "images": ["/screenshots/panel.png"],
+      "year": 2025
+    },
+    {
+      "id": "erp-system",
+      "title": "ERP System",
+      "titleAr": "نظام تخطيط الموارد",
+      "description": "Enterprise resource planning system - Private client project under development",
+      "descriptionAr": "نظام تخطيط موارد المؤسسات - مشروع عميل خاص قيد التطوير",
+      "icon": "Server",
+      "colorClass": "project-erp",
+      "tech": ["Next.js", "PostgreSQL", "Prisma", "TypeScript"],
+      "status": "development",
+      "category": "enterprise",
+      "categoryLabel": "Enterprise",
+      "categoryLabelAr": "مؤسسي",
+      "type": "client",
+      "typeLabel": "Client Project",
+      "typeLabelAr": "مشروع عميل",
+      "viewType": "private",
+      "viewLabel": "Private",
+      "viewLabelAr": "خاص",
+      "isPublic": false,
+      "demoUrl": null,
+      "githubUrl": null,
+      "featured": false,
+      "images": [],
+      "year": 2025
     }
   ],
   "meta": {
     "lastUpdated": "2026-01-17",
-    "totalProjects": 9,
-    "version": "3.0.0"
+    "totalProjects": 11,
+    "version": "3.1.0"
   }
 }
