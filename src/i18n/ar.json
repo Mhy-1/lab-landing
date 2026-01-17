@@ -3,6 +3,7 @@
     "lang": "ar",
     "dir": "rtl"
   },
+  "logo": "معرض أعمالي",
   "nav": {
     "projects": "المشاريع",
     "about": "عني",
@@ -16,15 +17,18 @@
     "cta": "استكشف المشاريع",
     "stats": {
       "projects": "مشاريع",
-      "ready": "جاهزة",
+      "clients": "عملاء",
       "technologies": "تقنية"
     }
   },
   "projects": {
     "title": "المشاريع",
     "viewProject": "عرض المشروع",
+    "viewDemo": "عرض الديمو",
+    "viewWebsite": "زيارة الموقع",
     "viewCode": "الكود",
     "featured": "مميز",
+    "noResults": "لم يتم العثور على مشاريع مطابقة للبحث",
     "status": {
       "ready": "جاهز",
       "inProgress": "قيد التطوير",
@@ -34,7 +38,14 @@
       "all": "الكل",
       "ai": "ذكاء اصطناعي",
       "enterprise": "مؤسسي",
-      "tools": "أدوات"
+      "tools": "أدوات",
+      "showcase": "عرض"
+    },
+    "type": {
+      "all": "كل الأنواع",
+      "client": "عميل",
+      "personal": "شخصي",
+      "graduation": "تخرج"
     }
   },
   "footer": {

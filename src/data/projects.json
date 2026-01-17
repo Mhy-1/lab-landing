@@ -13,28 +13,77 @@
       "category": "showcase",
       "categoryLabel": "Showcase",
       "categoryLabelAr": "عرض",
+      "type": "client",
+      "typeLabel": "Client Project",
+      "typeLabelAr": "مشروع عميل",
+      "viewType": "demo",
+      "viewLabel": "See Demo",
+      "viewLabelAr": "عرض الديمو",
+      "isPublic": false,
       "demoUrl": "https://rameem.lab.mdajam.com",
-      "githubUrl": "https://github.com/Mhy-1/rameem",
+      "githubUrl": null,
       "featured": true,
-      "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=640&h=360&fit=crop"
+      "images": [
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=450&fit=crop",
+        "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=450&fit=crop"
+      ],
+      "year": 2025
     },
     {
-      "id": "flowforge",
-      "title": "FlowForge",
-      "titleAr": "فلو فورج",
-      "description": "Visual workflow automation builder with drag-and-drop interface",
-      "descriptionAr": "منشئ سير العمل المرئي مع واجهة السحب والإفلات",
-      "icon": "Workflow",
-      "colorClass": "project-flowforge",
-      "tech": ["Next.js", "React Flow", "TypeScript"],
+      "id": "sparkles-laundry",
+      "title": "Sparkles Laundry",
+      "titleAr": "سباركلز للغسيل",
+      "description": "Modern laundry service website with booking system and service showcase",
+      "descriptionAr": "موقع خدمات غسيل عصري مع نظام حجز وعرض الخدمات",
+      "icon": "Sparkles",
+      "colorClass": "project-sparkles",
+      "tech": ["React", "Vite", "TailwindCSS"],
       "status": "ready",
-      "category": "tools",
-      "categoryLabel": "Tools",
-      "categoryLabelAr": "أدوات",
-      "demoUrl": "https://flowforge.lab.mdajam.com",
-      "githubUrl": "https://github.com/Mhy-1/flowforge-demo",
+      "category": "showcase",
+      "categoryLabel": "Showcase",
+      "categoryLabelAr": "عرض",
+      "type": "client",
+      "typeLabel": "Client Project",
+      "typeLabelAr": "مشروع عميل",
+      "viewType": "website",
+      "viewLabel": "See Website",
+      "viewLabelAr": "زيارة الموقع",
+      "isPublic": false,
+      "demoUrl": "https://sparkles.lab.mdajam.com",
+      "githubUrl": null,
       "featured": true,
-      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=640&h=360&fit=crop"
+      "images": [
+        "https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=800&h=450&fit=crop"
+      ],
+      "year": 2025
+    },
+    {
+      "id": "fuel-well",
+      "title": "Fuel Well",
+      "titleAr": "فيول ويل",
+      "description": "Product catalog with AI nutrition extraction and OCR - Graduation Project",
+      "descriptionAr": "كتالوج المنتجات مع استخراج التغذية بالذكاء الاصطناعي - مشروع التخرج",
+      "icon": "Fuel",
+      "colorClass": "project-fuelwell",
+      "tech": ["Next.js", "Prisma", "SQLite", "AI/OCR"],
+      "status": "ready",
+      "category": "ai",
+      "categoryLabel": "AI",
+      "categoryLabelAr": "ذكاء اصطناعي",
+      "type": "graduation",
+      "typeLabel": "Graduation Project",
+      "typeLabelAr": "مشروع تخرج",
+      "viewType": "website",
+      "viewLabel": "See Website",
+      "viewLabelAr": "زيارة الموقع",
+      "isPublic": true,
+      "demoUrl": "https://fuelwell.lab.mdajam.com",
+      "githubUrl": "https://github.com/Mhy-1/fuel-well",
+      "featured": true,
+      "images": [
+        "https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=800&h=450&fit=crop"
+      ],
+      "year": 2024
     },
     {
       "id": "ems",
@@ -49,10 +98,48 @@
       "category": "enterprise",
       "categoryLabel": "Enterprise",
       "categoryLabelAr": "مؤسسي",
+      "type": "client",
+      "typeLabel": "Client Project",
+      "typeLabelAr": "مشروع عميل",
+      "viewType": "demo",
+      "viewLabel": "See Demo",
+      "viewLabelAr": "عرض الديمو",
+      "isPublic": false,
       "demoUrl": "https://ems.lab.mdajam.com",
-      "githubUrl": "https://github.com/Mhy-1/EMS-demo",
+      "githubUrl": null,
       "featured": true,
-      "image": "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=640&h=360&fit=crop"
+      "images": [
+        "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=450&fit=crop"
+      ],
+      "year": 2025
+    },
+    {
+      "id": "flowforge",
+      "title": "FlowForge",
+      "titleAr": "فلو فورج",
+      "description": "Visual workflow automation builder with drag-and-drop interface",
+      "descriptionAr": "منشئ سير العمل المرئي مع واجهة السحب والإفلات",
+      "icon": "Workflow",
+      "colorClass": "project-flowforge",
+      "tech": ["Next.js", "React Flow", "TypeScript"],
+      "status": "ready",
+      "category": "tools",
+      "categoryLabel": "Tools",
+      "categoryLabelAr": "أدوات",
+      "type": "personal",
+      "typeLabel": "Personal Project",
+      "typeLabelAr": "مشروع شخصي",
+      "viewType": "demo",
+      "viewLabel": "See Demo",
+      "viewLabelAr": "عرض الديمو",
+      "isPublic": false,
+      "demoUrl": "https://flowforge.lab.mdajam.com",
+      "githubUrl": null,
+      "featured": false,
+      "images": [
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop"
+      ],
+      "year": 2025
     },
     {
       "id": "linkedin-generator",
@@ -67,10 +154,20 @@
       "category": "ai",
       "categoryLabel": "AI",
       "categoryLabelAr": "ذكاء اصطناعي",
+      "type": "personal",
+      "typeLabel": "Personal Project",
+      "typeLabelAr": "مشروع شخصي",
+      "viewType": "demo",
+      "viewLabel": "See Demo",
+      "viewLabelAr": "عرض الديمو",
+      "isPublic": false,
       "demoUrl": "https://linkedin.lab.mdajam.com",
-      "githubUrl": "https://github.com/Mhy-1/Linkedin_Post_Generate",
+      "githubUrl": null,
       "featured": false,
-      "image": "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=640&h=360&fit=crop"
+      "images": [
+        "https://images.unsplash.com/photo-1611944212129-29977ae1398c?w=800&h=450&fit=crop"
+      ],
+      "year": 2024
     },
     {
       "id": "resume-ai",
@@ -85,10 +182,20 @@
       "category": "ai",
       "categoryLabel": "AI",
       "categoryLabelAr": "ذكاء اصطناعي",
+      "type": "personal",
+      "typeLabel": "Personal Project",
+      "typeLabelAr": "مشروع شخصي",
+      "viewType": "demo",
+      "viewLabel": "See Demo",
+      "viewLabelAr": "عرض الديمو",
+      "isPublic": false,
       "demoUrl": "https://resume.lab.mdajam.com",
-      "githubUrl": "https://github.com/Mhy-1/resume-ai",
+      "githubUrl": null,
       "featured": false,
-      "image": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=640&h=360&fit=crop"
+      "images": [
+        "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=450&fit=crop"
+      ],
+      "year": 2025
     },
     {
       "id": "survey-system",
@@ -103,10 +210,20 @@
       "category": "enterprise",
       "categoryLabel": "Enterprise",
       "categoryLabelAr": "مؤسسي",
+      "type": "personal",
+      "typeLabel": "Personal Project",
+      "typeLabelAr": "مشروع شخصي",
+      "viewType": "demo",
+      "viewLabel": "See Demo",
+      "viewLabelAr": "عرض الديمو",
+      "isPublic": false,
       "demoUrl": "https://survey.lab.mdajam.com",
-      "githubUrl": "https://github.com/Mhy-1/AMSteel_Survey",
+      "githubUrl": null,
       "featured": false,
-      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=640&h=360&fit=crop"
+      "images": [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=450&fit=crop"
+      ],
+      "year": 2024
     },
     {
       "id": "e-form",
@@ -121,33 +238,25 @@
       "category": "enterprise",
       "categoryLabel": "Enterprise",
       "categoryLabelAr": "مؤسسي",
+      "type": "personal",
+      "typeLabel": "Personal Project",
+      "typeLabelAr": "مشروع شخصي",
+      "viewType": "demo",
+      "viewLabel": "See Demo",
+      "viewLabelAr": "عرض الديمو",
+      "isPublic": false,
       "demoUrl": "https://eform.lab.mdajam.com",
-      "githubUrl": "https://github.com/Mhy-1/E_Form",
+      "githubUrl": null,
       "featured": false,
-      "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=640&h=360&fit=crop"
-    },
-    {
-      "id": "fuel-well",
-      "title": "Fuel Well",
-      "titleAr": "فيول ويل",
-      "description": "Product catalog with AI nutrition extraction and OCR",
-      "descriptionAr": "كتالوج المنتجات مع استخراج التغذية بالذكاء الاصطناعي",
-      "icon": "Fuel",
-      "colorClass": "project-fuelwell",
-      "tech": ["Next.js", "Prisma", "SQLite"],
-      "status": "ready",
-      "category": "ai",
-      "categoryLabel": "AI",
-      "categoryLabelAr": "ذكاء اصطناعي",
-      "demoUrl": "https://fuelwell.lab.mdajam.com",
-      "githubUrl": "https://github.com/Mhy-1/fuel-well",
-      "featured": false,
-      "image": "https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=640&h=360&fit=crop"
+      "images": [
+        "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=450&fit=crop"
+      ],
+      "year": 2024
     }
   ],
   "meta": {
-    "lastUpdated": "2026-01-16",
-    "totalProjects": 8,
-    "version": "2.1.0"
+    "lastUpdated": "2026-01-17",
+    "totalProjects": 9,
+    "version": "3.0.0"
   }
 }

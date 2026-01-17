@@ -3,6 +3,7 @@
     "lang": "en",
     "dir": "ltr"
   },
+  "logo": "Portfolio",
   "nav": {
     "projects": "Projects",
     "about": "About",
@@ -16,15 +17,18 @@
     "cta": "Explore Projects",
     "stats": {
       "projects": "Projects",
-      "ready": "Ready",
+      "clients": "Clients",
       "technologies": "Technologies"
     }
   },
   "projects": {
     "title": "Projects",
     "viewProject": "View Project",
+    "viewDemo": "See Demo",
+    "viewWebsite": "See Website",
     "viewCode": "Code",
     "featured": "Featured",
+    "noResults": "No projects found matching your search",
     "status": {
       "ready": "Ready",
       "inProgress": "In Progress",
@@ -34,7 +38,14 @@
       "all": "All",
       "ai": "AI",
       "enterprise": "Enterprise",
-      "tools": "Tools"
+      "tools": "Tools",
+      "showcase": "Showcase"
+    },
+    "type": {
+      "all": "All Types",
+      "client": "Client",
+      "personal": "Personal",
+      "graduation": "Graduation"
     }
   },
   "footer": {

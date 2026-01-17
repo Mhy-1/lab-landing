@@ -17,10 +17,23 @@ import {
   Stethoscope,
   Star,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Zap,
   Briefcase,
   Wrench,
-  Layers
+  Layers,
+  Lock,
+  ExternalLink,
+  Search,
+  SortAsc,
+  SortDesc,
+  GraduationCap,
+  User,
+  Users,
+  X,
+  Mail,
+  MapPin
 } from 'lucide-react';
 import { AppProvider, useApp } from './context/AppContext';
 import projectsData from './data/projects.json';
@@ -28,7 +41,7 @@ import projectsData from './data/projects.json';
 // Icon mapping
 const iconMap = {
   Stethoscope, Workflow, Building2, Linkedin,
-  FileText, BarChart3, FileCode, Fuel
+  FileText, BarChart3, FileCode, Fuel, Sparkles
 };
 
 const categoryIcons = {
@@ -37,6 +50,35 @@ const categoryIcons = {
   enterprise: Briefcase,
   tools: Wrench,
   showcase: Star
+};
+
+const typeIcons = {
+  client: Users,
+  personal: User,
+  graduation: GraduationCap
+};
+
+// Tech Stack Icons mapping (using simple colored badges with tooltips)
+const techColors = {
+  'React': '#61DAFB',
+  'Next.js': '#000000',
+  'TypeScript': '#3178C6',
+  'JavaScript': '#F7DF1E',
+  'Vite': '#646CFF',
+  'TailwindCSS': '#06B6D4',
+  'Framer Motion': '#FF0055',
+  'i18n': '#26A69A',
+  'Prisma': '#2D3748',
+  'PostgreSQL': '#336791',
+  'SQLite': '#003B57',
+  'Express': '#000000',
+  'NestJS': '#E0234E',
+  'Gemini AI': '#8E75B2',
+  'AI/OCR': '#FF6F00',
+  'React Flow': '#FF0072',
+  'Genkit': '#4285F4',
+  'Node.js': '#339933',
+  'MongoDB': '#47A248'
 };
 
 // Project color mapping
@@ -48,8 +90,178 @@ const projectColors = {
   'project-resume': 'var(--project-resume)',
   'project-survey': 'var(--project-survey)',
   'project-eform': 'var(--project-eform)',
-  'project-fuelwell': 'var(--project-fuelwell)'
+  'project-fuelwell': 'var(--project-fuelwell)',
+  'project-sparkles': '#FF6B9D'
 };
+
+// ============================================
+// TECH BADGE COMPONENT
+// ============================================
+function TechBadge({ tech }) {
+  const [showTooltip, setShowTooltip] = useState(false);
+  const color = techColors[tech] || '#6B7280';
+
+  return (
+    <div
+      className="tech-badge-wrapper"
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
+    >
+      <div
+        className="tech-badge"
+        style={{
+          backgroundColor: `${color}20`,
+          borderColor: `${color}40`
+        }}
+      >
+        <span
+          className="tech-dot"
+          style={{ backgroundColor: color }}
+        />
+        <span className="tech-name">{tech}</span>
+      </div>
+      {showTooltip && (
+        <div className="tech-tooltip">
+          {tech}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ============================================
+// IMAGE CAROUSEL COMPONENT
+// ============================================
+function ImageCarousel({ images, title }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  if (!images || images.length === 0) {
+    return (
+      <div className="carousel-placeholder">
+        <Layers size={48} />
+      </div>
+    );
+  }
+
+  if (images.length === 1) {
+    return (
+      <img
+        src={images[0]}
+        alt={title}
+        loading="lazy"
+        className="carousel-single-image"
+      />
+    );
+  }
+
+  const nextImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="carousel">
+      <img
+        src={images[currentIndex]}
+        alt={`${title} - ${currentIndex + 1}`}
+        loading="lazy"
+        className="carousel-image"
+      />
+
+      <button
+        className="carousel-btn carousel-btn-prev"
+        onClick={prevImage}
+        aria-label="Previous image"
+      >
+        <ChevronLeft size={20} />
+      </button>
+
+      <button
+        className="carousel-btn carousel-btn-next"
+        onClick={nextImage}
+        aria-label="Next image"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      <div className="carousel-dots">
+        {images.map((_, idx) => (
+          <button
+            key={idx}
+            className={`carousel-dot ${idx === currentIndex ? 'active' : ''}`}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setCurrentIndex(idx);
+            }}
+            aria-label={`Go to image ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ============================================
+// GITHUB BADGE COMPONENT
+// ============================================
+function GitHubBadge({ isPublic, githubUrl, t }) {
+  if (isPublic && githubUrl) {
+    return (
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="github-badge github-badge-public"
+      >
+        <Github size={16} />
+        <span>Public</span>
+        <ExternalLink size={12} />
+      </a>
+    );
+  }
+
+  return (
+    <div className="github-badge github-badge-private">
+      <Lock size={14} />
+      <span>Private</span>
+    </div>
+  );
+}
+
+// ============================================
+// TYPE BADGE COMPONENT
+// ============================================
+function TypeBadge({ type, label }) {
+  const TypeIcon = typeIcons[type] || User;
+
+  const typeColors = {
+    client: 'var(--type-client)',
+    personal: 'var(--type-personal)',
+    graduation: 'var(--type-graduation)'
+  };
+
+  return (
+    <div
+      className="type-badge"
+      style={{
+        backgroundColor: `${typeColors[type]}20`,
+        color: typeColors[type],
+        borderColor: `${typeColors[type]}40`
+      }}
+    >
+      <TypeIcon size={14} />
+      <span>{label}</span>
+    </div>
+  );
+}
 
 // ============================================
 // HEADER COMPONENT
@@ -74,31 +286,32 @@ function Header() {
       <div className="container">
         <nav className="header-nav">
           <a href="/" className="logo">
-            <div className="logo-icon">L</div>
-            <span className="logo-text">Lab<span>.</span></span>
+            <div className="logo-icon">
+              <span className="logo-icon-text">{t('logo')}</span>
+            </div>
           </a>
 
           <div className="header-controls">
             <button
               onClick={toggleLanguage}
-              className="icon-btn lang-btn"
+              className="nav-icon-btn"
               aria-label={t('accessibility.toggleLanguage')}
             >
-              <Globe />
-              <span>{language === 'ar' ? 'EN' : 'عربي'}</span>
+              <Globe size={20} />
             </button>
 
             <button
               onClick={toggleTheme}
-              className="icon-btn"
+              className="nav-icon-btn"
               aria-label={t('accessibility.toggleTheme')}
             >
               <motion.div
                 initial={false}
                 animate={{ rotate: theme === 'dark' ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                {theme === 'dark' ? <Sun /> : <Moon />}
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               </motion.div>
             </button>
 
@@ -106,10 +319,10 @@ function Header() {
               href="https://github.com/Mhy-1"
               target="_blank"
               rel="noopener noreferrer"
-              className="icon-btn"
-              aria-label="GitHub"
+              className="nav-icon-btn"
+              aria-label="GitHub Profile"
             >
-              <Github />
+              <Github size={20} />
             </a>
           </div>
         </nav>
@@ -125,6 +338,7 @@ function Hero() {
   const { t, language } = useApp();
   const projectCount = projectsData.projects.length;
   const techCount = [...new Set(projectsData.projects.flatMap(p => p.tech))].length;
+  const clientCount = projectsData.projects.filter(p => p.type === 'client').length;
 
   return (
     <section className="hero">
@@ -141,7 +355,7 @@ function Hero() {
           transition={{ duration: 0.6 }}
         >
           <div className="badge">
-            <Sparkles />
+            <Sparkles size={16} />
             {t('hero.badge')}
           </div>
 
@@ -168,8 +382,8 @@ function Hero() {
             </div>
             <div className="stat-divider" />
             <div className="stat">
-              <div className="stat-value accent">{projectCount}</div>
-              <div className="stat-label">{t('hero.stats.ready')}</div>
+              <div className="stat-value accent">{clientCount}</div>
+              <div className="stat-label">{t('hero.stats.clients')}</div>
             </div>
             <div className="stat-divider" />
             <div className="stat">
@@ -183,7 +397,7 @@ function Hero() {
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <ChevronDown />
+            <ChevronDown size={24} />
           </motion.div>
         </motion.div>
       </div>
@@ -192,16 +406,18 @@ function Hero() {
 }
 
 // ============================================
-// PROJECT CARD - New Design with Image
+// PROJECT CARD - New Design with all features
 // ============================================
 function ProjectCard({ project, index }) {
   const { t, language } = useApp();
+  const [isHovered, setIsHovered] = useState(false);
   const Icon = iconMap[project.icon] || Layers;
   const iconColor = projectColors[project.colorClass] || 'var(--primary)';
 
   const title = language === 'ar' ? project.titleAr : project.title;
   const description = language === 'ar' ? project.descriptionAr : project.description;
-  const categoryLabel = language === 'ar' ? project.categoryLabelAr : project.categoryLabel;
+  const typeLabel = language === 'ar' ? project.typeLabelAr : project.typeLabel;
+  const viewLabel = language === 'ar' ? project.viewLabelAr : project.viewLabel;
 
   return (
     <motion.article
@@ -209,53 +425,72 @@ function ProjectCard({ project, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      className="project-card"
+      className={`project-card ${isHovered ? 'hovered' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Card Image Section */}
+      {/* Card Image Section with Carousel */}
       <div className="card-image">
-        {project.image ? (
-          <img
-            src={project.image}
-            alt={title}
-            loading="lazy"
-          />
-        ) : (
-          <div className="card-image-placeholder">
-            <div className="placeholder-icon" style={{ background: iconColor }}>
-              <Icon />
+        <ImageCarousel images={project.images} title={title} />
+
+        {/* Badges overlay */}
+        <div className="card-badges">
+          <TypeBadge type={project.type} label={typeLabel} />
+          {project.featured && (
+            <div className="featured-badge">
+              <Star size={12} />
+              <span>{t('projects.featured')}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Hover overlay with quick info */}
+        <motion.div
+          className="card-hover-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <div className="hover-content">
+            <span className="hover-year">{project.year}</span>
+            <div className="hover-tech">
+              {project.tech.slice(0, 3).map((tech) => (
+                <span key={tech} className="hover-tech-item">{tech}</span>
+              ))}
             </div>
           </div>
-        )}
-
-        {/* Category Badge */}
-        <span className="category-badge">{categoryLabel}</span>
-
-        {/* Featured Badge */}
-        {project.featured && (
-          <div className="featured-badge">
-            <Star />
-            {t('projects.featured')}
-          </div>
-        )}
+        </motion.div>
       </div>
 
       {/* Card Content Section */}
       <div className="card-content">
         <div className="card-header">
           <div className="card-icon" style={{ background: iconColor }}>
-            <Icon />
+            <Icon size={20} />
           </div>
-          <h3 className="card-title">{title}</h3>
+          <div className="card-title-section">
+            <h3 className="card-title">{title}</h3>
+            <GitHubBadge
+              isPublic={project.isPublic}
+              githubUrl={project.githubUrl}
+              t={t}
+            />
+          </div>
         </div>
 
         <p className="card-description">{description}</p>
 
-        <div className="card-tags">
+        {/* Tech Stack with icons */}
+        <div className="card-tech">
           {project.tech.slice(0, 4).map((tech) => (
-            <span key={tech} className="tag">{tech}</span>
+            <TechBadge key={tech} tech={tech} />
           ))}
+          {project.tech.length > 4 && (
+            <span className="tech-more">+{project.tech.length - 4}</span>
+          )}
         </div>
 
+        {/* Actions */}
         <div className="card-actions">
           <a
             href={project.demoUrl}
@@ -263,23 +498,130 @@ function ProjectCard({ project, index }) {
             rel="noopener noreferrer"
             className="btn btn-primary"
           >
-            {t('projects.viewProject')}
-            <ArrowUpRight />
+            {project.viewType === 'website' ? (
+              <ExternalLink size={18} />
+            ) : (
+              <ArrowUpRight size={18} />
+            )}
+            {viewLabel}
           </a>
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
-              aria-label={t('projects.viewCode')}
-            >
-              <Github />
-            </a>
-          )}
         </div>
       </div>
     </motion.article>
+  );
+}
+
+// ============================================
+// SEARCH & FILTER BAR
+// ============================================
+function SearchFilterBar({
+  searchTerm,
+  setSearchTerm,
+  activeFilter,
+  setActiveFilter,
+  activeType,
+  setActiveType,
+  sortOrder,
+  setSortOrder,
+  projectCounts
+}) {
+  const { t, language } = useApp();
+
+  const categoryFilters = [
+    { id: 'all', label: t('projects.filter.all'), count: projectCounts.all },
+    { id: 'ai', label: t('projects.filter.ai'), count: projectCounts.ai },
+    { id: 'enterprise', label: t('projects.filter.enterprise'), count: projectCounts.enterprise },
+    { id: 'tools', label: t('projects.filter.tools'), count: projectCounts.tools },
+    { id: 'showcase', label: t('projects.filter.showcase'), count: projectCounts.showcase },
+  ];
+
+  const typeFilters = [
+    { id: 'all', label: language === 'ar' ? 'الكل' : 'All Types', count: projectCounts.all },
+    { id: 'client', label: language === 'ar' ? 'عميل' : 'Client', count: projectCounts.client },
+    { id: 'personal', label: language === 'ar' ? 'شخصي' : 'Personal', count: projectCounts.personal },
+    { id: 'graduation', label: language === 'ar' ? 'تخرج' : 'Graduation', count: projectCounts.graduation },
+  ];
+
+  return (
+    <div className="search-filter-bar">
+      {/* Search Input */}
+      <div className="search-wrapper">
+        <Search size={20} className="search-icon" />
+        <input
+          type="text"
+          placeholder={language === 'ar' ? 'ابحث عن مشروع...' : 'Search projects...'}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        {searchTerm && (
+          <button
+            className="search-clear"
+            onClick={() => setSearchTerm('')}
+            aria-label="Clear search"
+          >
+            <X size={16} />
+          </button>
+        )}
+      </div>
+
+      {/* Category Filters */}
+      <div className="filters-row">
+        <div className="filters-group">
+          <span className="filters-label">{language === 'ar' ? 'الفئة:' : 'Category:'}</span>
+          <div className="filters">
+            {categoryFilters.map((filter) => {
+              const FilterIcon = categoryIcons[filter.id] || Layers;
+              return (
+                <button
+                  key={filter.id}
+                  onClick={() => setActiveFilter(filter.id)}
+                  className={`filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
+                >
+                  <FilterIcon size={16} />
+                  <span>{filter.label}</span>
+                  <span className="filter-count">{filter.count}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Type Filters */}
+      <div className="filters-row">
+        <div className="filters-group">
+          <span className="filters-label">{language === 'ar' ? 'النوع:' : 'Type:'}</span>
+          <div className="filters type-filters">
+            {typeFilters.map((filter) => {
+              const TypeIcon = typeIcons[filter.id] || Layers;
+              return (
+                <button
+                  key={filter.id}
+                  onClick={() => setActiveType(filter.id)}
+                  className={`filter-btn filter-btn-type ${activeType === filter.id ? 'active' : ''}`}
+                >
+                  {filter.id !== 'all' && <TypeIcon size={14} />}
+                  <span>{filter.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Sort Toggle */}
+        <button
+          className="sort-btn"
+          onClick={() => setSortOrder(sortOrder === 'newest' ? 'oldest' : 'newest')}
+        >
+          {sortOrder === 'newest' ? <SortDesc size={18} /> : <SortAsc size={18} />}
+          <span>{sortOrder === 'newest'
+            ? (language === 'ar' ? 'الأحدث' : 'Newest')
+            : (language === 'ar' ? 'الأقدم' : 'Oldest')
+          }</span>
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -289,18 +631,60 @@ function ProjectCard({ project, index }) {
 function Projects() {
   const { t } = useApp();
   const [activeFilter, setActiveFilter] = useState('all');
+  const [activeType, setActiveType] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortOrder, setSortOrder] = useState('newest');
 
-  const filters = [
-    { id: 'all', label: t('projects.filter.all') },
-    { id: 'ai', label: t('projects.filter.ai') },
-    { id: 'enterprise', label: t('projects.filter.enterprise') },
-    { id: 'tools', label: t('projects.filter.tools') },
-  ];
+  // Calculate counts for filters
+  const projectCounts = useMemo(() => {
+    const counts = {
+      all: projectsData.projects.length,
+      ai: projectsData.projects.filter(p => p.category === 'ai').length,
+      enterprise: projectsData.projects.filter(p => p.category === 'enterprise').length,
+      tools: projectsData.projects.filter(p => p.category === 'tools').length,
+      showcase: projectsData.projects.filter(p => p.category === 'showcase').length,
+      client: projectsData.projects.filter(p => p.type === 'client').length,
+      personal: projectsData.projects.filter(p => p.type === 'personal').length,
+      graduation: projectsData.projects.filter(p => p.type === 'graduation').length,
+    };
+    return counts;
+  }, []);
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'all') return projectsData.projects;
-    return projectsData.projects.filter(p => p.category === activeFilter);
-  }, [activeFilter]);
+    let filtered = projectsData.projects;
+
+    // Filter by category
+    if (activeFilter !== 'all') {
+      filtered = filtered.filter(p => p.category === activeFilter);
+    }
+
+    // Filter by type
+    if (activeType !== 'all') {
+      filtered = filtered.filter(p => p.type === activeType);
+    }
+
+    // Filter by search term
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(p =>
+        p.title.toLowerCase().includes(term) ||
+        p.titleAr.includes(term) ||
+        p.description.toLowerCase().includes(term) ||
+        p.descriptionAr.includes(term) ||
+        p.tech.some(t => t.toLowerCase().includes(term))
+      );
+    }
+
+    // Sort
+    filtered = [...filtered].sort((a, b) => {
+      if (sortOrder === 'newest') {
+        return b.year - a.year;
+      }
+      return a.year - b.year;
+    });
+
+    return filtered;
+  }, [activeFilter, activeType, searchTerm, sortOrder]);
 
   return (
     <section id="projects" className="projects-section">
@@ -314,35 +698,37 @@ function Projects() {
           >
             {t('projects.title')}
           </motion.h2>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="filters"
-          >
-            {filters.map((filter) => {
-              const FilterIcon = categoryIcons[filter.id] || Layers;
-              return (
-                <button
-                  key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={`filter-btn ${activeFilter === filter.id ? 'active' : ''}`}
-                >
-                  <FilterIcon />
-                  {filter.label}
-                </button>
-              );
-            })}
-          </motion.div>
         </div>
 
+        <SearchFilterBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+          activeType={activeType}
+          setActiveType={setActiveType}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          projectCounts={projectCounts}
+        />
+
         <AnimatePresence mode="popLayout">
-          <motion.div layout className="projects-grid">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </motion.div>
+          {filteredProjects.length > 0 ? (
+            <motion.div layout className="projects-grid">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              className="no-results"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Search size={48} />
+              <p>{t('projects.noResults')}</p>
+            </motion.div>
+          )}
         </AnimatePresence>
       </div>
     </section>
@@ -353,18 +739,94 @@ function Projects() {
 // FOOTER
 // ============================================
 function Footer() {
-  const { t } = useApp();
+  const { t, language } = useApp();
   const year = new Date().getFullYear();
+
+  const socialLinks = [
+    { icon: Github, href: 'https://github.com/Mhy-1', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/mdajam', label: 'LinkedIn' },
+    { icon: Mail, href: 'mailto:contact@mdajam.com', label: 'Email' },
+  ];
+
+  const quickLinks = [
+    { label: language === 'ar' ? 'الموقع الرئيسي' : 'Main Site', href: 'https://mdajam.com' },
+    { label: language === 'ar' ? 'السيرة الذاتية' : 'CV', href: 'https://mdajam.com' },
+    { label: language === 'ar' ? 'روابطي' : 'Links', href: 'https://links.mdajam.com' },
+  ];
 
   return (
     <footer className="footer">
       <div className="container">
-        <div className="footer-content">
-          <p className="footer-text">
+        <div className="footer-main">
+          {/* Brand Section */}
+          <div className="footer-brand">
+            <a href="/" className="footer-logo">
+              <div className="logo-icon">
+                <span className="logo-icon-text">{t('logo')}</span>
+              </div>
+            </a>
+            <p className="footer-tagline">
+              {language === 'ar'
+                ? 'معرض المشاريع التقنية'
+                : 'Technical Projects Showcase'}
+            </p>
+            <div className="footer-location">
+              <MapPin size={14} />
+              <span>{language === 'ar' ? 'المملكة العربية السعودية' : 'Saudi Arabia'}</span>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="footer-links">
+            <h4>{language === 'ar' ? 'روابط سريعة' : 'Quick Links'}</h4>
+            <ul>
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">
+                    {link.label}
+                    <ArrowUpRight size={12} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div className="footer-social">
+            <h4>{language === 'ar' ? 'تواصل معي' : 'Connect'}</h4>
+            <div className="social-icons">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                  aria-label={social.label}
+                >
+                  <social.icon size={20} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p className="footer-copyright">
             © {year} mdajam.com · {t('footer.rights')}
           </p>
-          <p className="footer-text">
-            {t('footer.madeWith')} <span>React + Vite</span>
+          <p className="footer-developer">
+            {language === 'ar' ? (
+              <>
+                <span className="dev-label">تطوير</span>
+                <span className="dev-name">م. مشاري دعجم</span>
+              </>
+            ) : (
+              <>
+                <span className="dev-label">Developed by</span>
+                <span className="dev-name">Eng. Meshari Dejem</span>
+              </>
+            )}
           </p>
         </div>
       </div>
@@ -377,7 +839,7 @@ function Footer() {
 // ============================================
 function AppContent() {
   return (
-    <div>
+    <div className="app">
       <Header />
       <main>
         <Hero />
