@@ -242,21 +242,8 @@ function GitHubBadge({ isPublic, githubUrl, t }) {
 function TypeBadge({ type, label }) {
   const TypeIcon = typeIcons[type] || User;
 
-  const typeColors = {
-    client: 'var(--type-client)',
-    personal: 'var(--type-personal)',
-    graduation: 'var(--type-graduation)'
-  };
-
   return (
-    <div
-      className="type-badge"
-      style={{
-        backgroundColor: `${typeColors[type]}20`,
-        color: typeColors[type],
-        borderColor: `${typeColors[type]}40`
-      }}
-    >
+    <div className={`type-badge type-badge-${type}`}>
       <TypeIcon size={14} />
       <span>{label}</span>
     </div>
@@ -749,9 +736,9 @@ function Footer() {
   ];
 
   const quickLinks = [
-    { label: language === 'ar' ? 'الموقع الرئيسي' : 'Main Site', href: 'https://mdajam.com' },
-    { label: language === 'ar' ? 'السيرة الذاتية' : 'CV', href: 'https://mdajam.com' },
-    { label: language === 'ar' ? 'روابطي' : 'Links', href: 'https://links.mdajam.com' },
+    { id: 'main-site', label: language === 'ar' ? 'الموقع الرئيسي' : 'Main Site', href: 'https://mdajam.com' },
+    { id: 'cv', label: language === 'ar' ? 'السيرة الذاتية' : 'CV', href: 'https://mdajam.com' },
+    { id: 'links', label: language === 'ar' ? 'روابطي' : 'Links', href: 'https://links.mdajam.com' },
   ];
 
   return (
@@ -781,7 +768,7 @@ function Footer() {
             <h4>{language === 'ar' ? 'روابط سريعة' : 'Quick Links'}</h4>
             <ul>
               {quickLinks.map((link) => (
-                <li key={link.href}>
+                <li key={link.id}>
                   <a href={link.href} target="_blank" rel="noopener noreferrer">
                     {link.label}
                     <ArrowUpRight size={12} />
